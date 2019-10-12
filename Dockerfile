@@ -3,12 +3,13 @@ FROM ubuntu:18.04
 # Install.
 RUN \
   apt-get update && \
-  apt-get install software-properties-common && \
+  apt-get install software-properties-common -y && \
   add-apt-repository ppa:longsleep/golang-backports && \
   apt-get update && \
   apt-get install -y jq golang-1.12-go && \
   apt-get -y upgrade && \
-  mkdir -p ~/code/go/src
+  mkdir -p ~/code/go/src && \
+  curl https://sh.rustup.rs -sSf | sh -s -- -y
 
 # Set environment variables.
 ENV HOME /root
