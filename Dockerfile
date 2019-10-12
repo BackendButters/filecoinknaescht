@@ -3,7 +3,7 @@ FROM ubuntu:18.04
 # Install.
 RUN \
   apt-get update && \
-  apt-get install software-properties-common curl apt-utils --no-install-recommends -y && \
+  apt-get install software-properties-common curl apt-utils git --no-install-recommends -y && \
   add-apt-repository ppa:longsleep/golang-backports && \
   apt-get update && \
   apt-get install --no-install-recommends -y jq golang-1.12-go && \
