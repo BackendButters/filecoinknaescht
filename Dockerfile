@@ -6,7 +6,7 @@ RUN \
   apt-get install software-properties-common curl apt-utils git --no-install-recommends -y && \
   add-apt-repository ppa:longsleep/golang-backports && \
   apt-get update && \
-  apt-get install --no-install-recommends -y jq golang-1.12-go && \
+  apt-get install --no-install-recommends -y jq golang-1.12-go pkg-config && \
   apt-get -y upgrade && \
   mkdir -p ~/code/go/src
 
@@ -24,6 +24,8 @@ RUN mkdir -p ${GOPATH}/src/github.com/filecoin-project && \
 	git fetch origin && \
 	git checkout tags/0.5.7 && \
 	git submodule update --init --recursive
+
+RUN FILECOIN_USE_PRECOMPILED_RUST_PROOFS=true go run ./build deps
 
 # Define working directory.
 WORKDIR /root
