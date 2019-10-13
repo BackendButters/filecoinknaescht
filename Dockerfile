@@ -25,10 +25,6 @@ RUN mkdir -p ${GOPATH}/src/github.com/filecoin-project && \
 	git checkout tags/0.5.7 && \
 	git submodule update --init --recursive
 
-RUN FILECOIN_USE_PRECOMPILED_RUST_PROOFS=true go run ./build deps
-
-RUN go run ./build build
-
 # Define working directory.
 WORKDIR /root
 
