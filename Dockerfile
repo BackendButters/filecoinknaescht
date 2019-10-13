@@ -17,15 +17,17 @@ ENV HOME /root
 ENV GOPATH $HOME/code/go
 ENV PATH $PATH:$GOPATH/bin
 ENV PATH $PATH:/usr/lib/go-1.12/bin
+ENV FILECOIN_USE_PRECOMPILED_RUST_PROOFS=true
 
 RUN mkdir -p ${GOPATH}/src/github.com/filecoin-project && \
 	git clone https://github.com/filecoin-project/go-filecoin.git ${GOPATH}/src/github.com/filecoin-project/go-filecoin && \
 	cd $GOPATH/src/github.com/filecoin-project/go-filecoin && \
 	git fetch origin && \
 	git checkout tags/0.5.7 && \
-	git submodule update --init --recursive
-
-RUN FILECOIN_USE_PRECOMPILED_RUST_PROOFS=true go run ./build deps
+	git submodule update --init --recursive && \
+	go run ./build deps && \
+	go run ./build build && \
+	cp go-filecoin $GOPATH/bin
 
 # Define working directory.
 WORKDIR /root
