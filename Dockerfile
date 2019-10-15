@@ -29,10 +29,9 @@ RUN mkdir -p ${GOPATH}/src/github.com/filecoin-project && \
 	go run ./build build && \
 	cp go-filecoin $GOPATH/bin
 
-RUN $GOPATH/src/github.com/filecoin-project/go-filecoin/go-filecoin init --devnet-user --genesisfile=https://genesis.user.kittyhawk.wtf/genesis.car
-
-RUN $GOPATH/src/github.com/filecoin-project/go-filecoin config heartbeat.beatTarget "/dns4/backend-stats.kittyhawk.wtf/tcp/8080/ipfs/QmUWmZnpZb6xFryNDeNU7KcJ1Af5oHy7fB9npU67sseEjR" && \ 
-	$GOPATH/src/github.com/filecoin-project/go-filecoin config heartbeat.nickname "Knaeschtnode"
+RUN $GOPATH/src/github.com/filecoin-project/go-filecoin/go-filecoin init --devnet-user --genesisfile=https://genesis.user.kittyhawk.wtf/genesis.car && \
+	$GOPATH/src/github.com/filecoin-project/go-filecoin/go-filecoin config heartbeat.beatTarget "/dns4/backend-stats.kittyhawk.wtf/tcp/8080/ipfs/QmUWmZnpZb6xFryNDeNU7KcJ1Af5oHy7fB9npU67sseEjR" && \ 
+	$GOPATH/src/github.com/filecoin-project/go-filecoin/go-filecoin config heartbeat.nickname "Knaeschtnode"
 
 # Define working directory.
 WORKDIR $GOPATH/src/github.com/filecoin-project/go-filecoin
