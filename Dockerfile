@@ -29,9 +29,8 @@ RUN mkdir -p ${GOPATH}/src/github.com/filecoin-project && \
 	go run ./build build && \
 	cp go-filecoin $GOPATH/bin
 
+RUN $GOPATH/src/github.com/filecoin-project/go-filecoin/go-filecoin init --devnet-user --genesisfile=https://genesis.user.kittyhawk.wtf/genesis.car
+
 WORKDIR $GOPATH/src/github.com/filecoin-project/go-filecoin
 
-RUN go-filecoin init --devnet-user --genesisfile=https://genesis.user.kittyhawk.wtf/genesis.car
-
-# Define default command.
 CMD ["go-filecoin daemon"]
