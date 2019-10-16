@@ -33,4 +33,4 @@ RUN $GOPATH/src/github.com/filecoin-project/go-filecoin/go-filecoin init --devne
 
 WORKDIR $GOPATH/src/github.com/filecoin-project/go-filecoin
 
-CMD "$GOPATH/src/github.com/filecoin-project/go-filecoin/go-filecoin daemon"
+CMD $GOPATH/src/github.com/filecoin-project/go-filecoin/go-filecoin daemon
